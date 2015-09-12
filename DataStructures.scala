@@ -1,16 +1,44 @@
 import scala.io.Source
+import scala.collection.mutable.ArrayBuffer
 
-object DataStructures
-{
+object DataStructures{
 
   def main(args: Array[String]) = {
 
 
     def runProblems = {
       heapSortProblem
+      stackImplementation
     }
     runProblems
 
+    def stackImplementation = {
+      val input = Array(1,4,5,6,7,1,23,0,45,5,6)
+      class Stack(input: ArrayBuffer[Int]){
+
+        def push(item:Int) = {
+          input = Array(item) ++ input
+        }
+
+        def pop() = {
+          val result = input.head
+          input = input.tail
+          result
+        }
+
+        def peek() = {
+          input.head
+        }
+
+        def isEmpty() = {
+          input.isEmpty 
+        }
+      }
+      val stack = new Stack(input)
+      println(stack.pop)
+      stack.push(3)
+      println(stack.pop)
+    }
     def heapSortProblem = {
       val input = Array(1,4,5,6,7,1,23,0,45,5,6)
       def heapSort(input:Array[Int]): Array[Int] = {
